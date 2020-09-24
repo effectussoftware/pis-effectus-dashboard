@@ -1,0 +1,9 @@
+.login-container {
+  background-image: radial-gradient(at 60% top, #2c4781, #4a6ccb);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding-top: 20%;
+  justify-content: center;
+  align-items: flex-start;
+}
