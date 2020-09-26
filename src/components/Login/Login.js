@@ -1,19 +1,33 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import { useLogin } from 'react-admin';
+import { useLogin, useNotify, Notification } from 'react-admin';
 
 import './Login.css';
 
-const Login = () => {
+const Login = ({ theme }) => {
   const login = useLogin();
+  const notify = useNotify();
+
+  const onSuccess = async (googleUser) => {
+    try {
+      await login(googleUser);
+    } catch (error) {
+      console.error(error.message);
+      notify(error.message);
+    }
+  };
 
   return (
-    <div className="login-container">
-      <GoogleLogin
-        clientId={process.env.REACT_APP_CLIENT_ID}
-        onSuccess={login}
-      />
-    </div>
+    <>
+      <div className="login-container">
+        <GoogleLogin
+          clientId={process.env.REACT_APP_CLIENT_ID}
+          onSuccess={onSuccess}
+          onFailure={console.log}
+        />
+      </div>
+      <Notification />
+    </>
   );
 };
 

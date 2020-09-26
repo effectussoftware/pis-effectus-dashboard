@@ -16,7 +16,9 @@ export default {
         },
       }
     );
-    return response.ok ? Promise.resolve() : Promise.reject();
+    const { error } = await response.json();
+    if (!response.ok) throw new Error(error);
+    return;
   },
   logout: () => {
     localStorage.removeItem(TOKEN);
