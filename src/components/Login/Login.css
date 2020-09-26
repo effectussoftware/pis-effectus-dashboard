@@ -1,5 +1,8 @@
 .login-container {
-  background-image: radial-gradient(at 60% top, #2c4781, #4a6ccb);
+  background-image: linear-gradient(
+    var(--primary-color),
+    var(--secondary-color)
+  );
   height: 100%;
   width: 100%;
   display: flex;

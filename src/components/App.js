@@ -6,8 +6,11 @@ import Login from './Login';
 import dataProvider from '../react-admin/dataProvider';
 import authProvider from '../react-admin/authProvider';
 
+import theme from '../react-admin/theme';
+
 const App = () => (
   <Admin
+    theme={theme}
     loginPage={Login}
     dataProvider={dataProvider}
     authProvider={authProvider}
