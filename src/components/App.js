@@ -1,13 +1,16 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 
-import Login from './components/Login';
+import Login from './Login';
 
-import dataProvider from './dataProvider';
-import authProvider from './authProvider';
+import dataProvider from '../react-admin/dataProvider';
+import authProvider from '../react-admin/authProvider';
+
+import theme from '../react-admin/theme';
 
 const App = () => (
   <Admin
+    theme={theme}
     loginPage={Login}
     dataProvider={dataProvider}
     authProvider={authProvider}
