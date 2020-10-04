@@ -9,7 +9,6 @@ import authProvider from '../react-admin/authProvider';
 import theme from '../react-admin/theme';
 
 import { UserList, UserEdit } from './User';
-import { CommunicationList, CommunicationEdit, CommunicationCreate } from './Communication';
 
 const App = () => (
   <Admin
@@ -18,13 +17,7 @@ const App = () => (
     dataProvider={dataProvider}
     authProvider={authProvider}
   >
-    <Resource name='user' list={UserList} edit={UserEdit} />
-    <Resource 
-      name='communication'
-      list={CommunicationList}
-      edit={CommunicationEdit}
-      create={CommunicationCreate}
-    />
+    <Resource name="users" list={UserList} edit={UserEdit} />
   </Admin>
 );
 
