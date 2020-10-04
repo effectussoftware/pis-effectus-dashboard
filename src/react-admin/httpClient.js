@@ -32,6 +32,10 @@ export default async (url, options) => {
 
     return response;
   } catch (error) {
-    console.error(error);
+    if (error.status === 401) {
+      localStorage.removeItem(USER_INFO);
+    } else {
+      console.error(error);
+    }
   }
 };
