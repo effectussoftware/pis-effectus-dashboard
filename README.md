@@ -1,3 +1,7 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/62c3fd1b4357e699c74c/maintainability)](https://codeclimate.com/github/effectussoftware/pis-effectus-dashboard/maintainability)
+
+![ESLint](https://github.com/effectussoftware/pis-effectus-dashboard/workflows/ESLint/badge.svg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
