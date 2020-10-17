@@ -4,3 +4,6 @@ export const TEXT = 'text';
 export const IS_PUBLISHED = 'published';
 export const CREATED_AT = 'created_at';
 export const UPDATED_AT = 'updated_at';
+export const IS_RECURRENT = 'is_recurrent';
+export const DATE_TIME = 'recurrent_on';
+export const IMAGE = 'image';

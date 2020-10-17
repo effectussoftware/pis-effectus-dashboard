@@ -10,12 +10,13 @@ async function deleteOneforEach(currentValue, index, array) {
 
 export default {
   getList: async (resource, params) => {
-    const url = `${resource}`;
+    const { page, perPage } = params.pagination;
+    const url = `${resource}?page=${page}&per_page=${perPage}`;
     try {
       const {
-        json: { users },
+        json
       } = await httpClient(url);
-      return { data: users, total: users.length };
+      return { data: json[resource], total: json.pagination.count };
     } catch (error) {
       console.error(error);
     }
@@ -33,8 +34,8 @@ export default {
 
   create: async (resource, { data }) => {
     const url = `${resource}`;
-    await httpClient(url, { method: 'POST', body: JSON.stringify(data) });
-    return { data: data, id: 1 }; // Falta el id que tendria que venir en el JSON
+    const { json } = await httpClient(url, { method: 'POST', body: JSON.stringify(data) });
+    return { data: json, id: json.id };
   },
 
   update: async (resource, params) => {
@@ -52,7 +53,7 @@ export default {
   delete: async (resource, { id }) => {
     const url = `${resource}/${id}`;
     const { json } = await httpClient(url, { method: 'DELETE' });
-    return { data: json }; // El JSON llega undefined
+    return { data: json };
   },
 
   deleteMany: async (resource, { ids }) => {
