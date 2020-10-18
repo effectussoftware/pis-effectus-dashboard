@@ -10,6 +10,8 @@ import theme from '../react-admin/theme';
 
 import { UserList, UserEdit } from './User';
 
+import { CommunicationList, CommunicationCreate, CommunicationEdit } from './Communication';
+
 const App = () => (
   <Admin
     theme={theme}
@@ -18,6 +20,7 @@ const App = () => (
     authProvider={authProvider}
   >
     <Resource name="users" list={UserList} edit={UserEdit} />
+    <Resource name="communications" list={CommunicationList} create={CommunicationCreate} edit={CommunicationEdit} />
   </Admin>
 );
 
