@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Edit,
   SimpleForm,
@@ -6,8 +6,8 @@ import {
   BooleanInput,
   ImageInput,
   ImageField,
-} from "react-admin";
-import { ID, TITLE, TEXT, IS_PUBLISHED, IMAGE } from "./consts";
+} from 'react-admin';
+import { ID, TITLE, TEXT, IS_PUBLISHED, IMAGE } from './consts';
 
 export const CommunicationEdit = (props) => (
   <Edit {...props}>
