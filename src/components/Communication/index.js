@@ -1,3 +1,3 @@
-export * from './CommunicationList';
-export * from './CommunicationEdit';
-export * from './CommunicationCreate';
+export * from "./CommunicationList";
+export * from "./CommunicationEdit";
+export * from "./CommunicationCreate";

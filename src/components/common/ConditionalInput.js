@@ -1,6 +1,6 @@
-import { cloneElement, useEffect } from 'react';
-import { useInput } from 'react-admin';
-import { useFormState } from 'react-final-form';
+import { cloneElement, useEffect } from "react";
+import { useInput } from "react-admin";
+import { useFormState } from "react-final-form";
 
 const ConditionalInput = ({ inputComponent, conditionField, ...props }) => {
   const {
