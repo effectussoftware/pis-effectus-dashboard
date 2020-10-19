@@ -4,7 +4,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import { IS_PUBLISHED } from './consts';
 
-const CommunicationsBulkActionButtons = () => {
+const CommunicationsBulkActionButtons = (props) => {
   const { data, selectedIds } = useListContext();
   const selectedIdsContainPublishedComm = selectedIds.some(
     (id) => data[id][IS_PUBLISHED]
@@ -13,11 +13,11 @@ const CommunicationsBulkActionButtons = () => {
   return selectedIdsContainPublishedComm ? (
     <Tooltip title="Alguno de los comunicados seleccionados ya fue publicado">
       <div>
-        <BulkDeleteButton disabled />
+        <BulkDeleteButton disabled {...props} />
       </div>
     </Tooltip>
   ) : (
-    <BulkDeleteButton />
+    <BulkDeleteButton {...props} />
   );
 };
 
