@@ -17,8 +17,10 @@ import {
 } from './consts';
 import EditButton from './EditButton';
 
+import BulkActionButtons from './BulkActionButtons';
+
 export const CommunicationList = (props) => (
-  <List {...props}>
+  <List bulkActionButtons={<BulkActionButtons />} {...props}>
     <Datagrid>
       <TextField source={ID} />
       <TextField source={TITLE} />
