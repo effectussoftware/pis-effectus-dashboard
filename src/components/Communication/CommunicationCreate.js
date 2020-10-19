@@ -6,6 +6,7 @@ import {
   BooleanInput,
   ImageInput,
   ImageField,
+  required,
 } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,8 +28,8 @@ const useStyles = makeStyles({
 export const CommunicationCreate = (props) => (
   <Create {...props} classes={useStyles()}>
     <SimpleForm>
-      <TextInput source={TITLE} />
-      <TextInput multiline source={TEXT} />
+      <TextInput source={TITLE} validate={[required()]} />
+      <TextInput multiline source={TEXT} validate={[required()]} />
       <ImageInput source={IMAGE} label="Agregar una imagen" accept="image/*">
         <ImageField source="src" title="title" />
       </ImageInput>
