@@ -1,8 +1,8 @@
-import React from "react";
-import { BulkDeleteButton, useListContext } from "react-admin";
-import Tooltip from "@material-ui/core/Tooltip";
+import React from 'react';
+import { BulkDeleteButton, useListContext } from 'react-admin';
+import Tooltip from '@material-ui/core/Tooltip';
 
-import { IS_PUBLISHED } from "./consts";
+import { IS_PUBLISHED } from './consts';
 
 const CommunicationsBulkActionButtons = () => {
   const { data, selectedIds } = useListContext();

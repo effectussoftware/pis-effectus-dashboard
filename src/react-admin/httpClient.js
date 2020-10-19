@@ -1,6 +1,6 @@
-import { fetchUtils } from "react-admin";
+import { fetchUtils } from 'react-admin';
 
-import { USER_INFO, UID, ACCESS_TOKEN, CLIENT } from "../constants";
+import { USER_INFO, UID, ACCESS_TOKEN, CLIENT } from '../constants';
 
 const { fetchJson } = fetchUtils;
 

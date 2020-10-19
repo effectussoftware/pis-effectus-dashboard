@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   List,
   Datagrid,
@@ -6,8 +6,8 @@ import {
   EmailField,
   BooleanField,
   EditButton,
-} from "react-admin";
-import { ID, EMAIL, NAME, IS_ACTIVE, IS_ADMIN } from "./consts";
+} from 'react-admin';
+import { ID, EMAIL, NAME, IS_ACTIVE, IS_ADMIN } from './consts';
 
 export const UserList = (props) => (
   <List {...props}>

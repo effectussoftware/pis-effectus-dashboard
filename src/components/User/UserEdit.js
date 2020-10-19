@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Edit, SimpleForm, BooleanInput, TextInput } from "react-admin";
-import { IS_ACTIVE, IS_ADMIN, ID, EMAIL, NAME } from "./consts";
+import * as React from 'react';
+import { Edit, SimpleForm, BooleanInput, TextInput } from 'react-admin';
+import { IS_ACTIVE, IS_ADMIN, ID, EMAIL, NAME } from './consts';
 
-import NoDeleteToolbar from "../common/NoDeleteToolbar";
+import NoDeleteToolbar from '../common/NoDeleteToolbar';
 
 export const UserEdit = (props) => (
   <Edit {...props}>

@@ -1,10 +1,10 @@
-import httpClient from "./httpClient";
+import httpClient from './httpClient';
 
 async function deleteOneforEach(currentValue, index, array) {
   const id = currentValue;
   const resource = this;
   const url = `${resource}/${id}`;
-  const { json } = await httpClient(url, { method: "DELETE" }); // JSON llega undefined
+  const { json } = await httpClient(url, { method: 'DELETE' }); // JSON llega undefined
   return { data: json };
 }
 
@@ -33,7 +33,7 @@ export default {
   create: async (resource, { data }) => {
     const url = `${resource}`;
     const { json } = await httpClient(url, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(data),
     });
     return { data: json, id: json.id };
@@ -43,7 +43,7 @@ export default {
     const { id, data } = params;
     const url = `${resource}/${id}`;
     const { json } = await httpClient(url, {
-      method: "PUT",
+      method: 'PUT',
       body: JSON.stringify(data),
     });
     return { data: json };
@@ -53,7 +53,7 @@ export default {
 
   delete: async (resource, { id }) => {
     const url = `${resource}/${id}`;
-    const { json } = await httpClient(url, { method: "DELETE" });
+    const { json } = await httpClient(url, { method: 'DELETE' });
     return { data: json };
   },
 

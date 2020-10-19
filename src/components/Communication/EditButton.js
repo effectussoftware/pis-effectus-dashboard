@@ -1,6 +1,6 @@
-import React from "react";
-import { EditButton } from "react-admin";
-import { IS_PUBLISHED } from "./consts";
+import React from 'react';
+import { EditButton } from 'react-admin';
+import { IS_PUBLISHED } from './consts';
 
 const CommunicationsEditButton = (props) => {
   const { record } = props;

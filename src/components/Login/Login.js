@@ -1,8 +1,8 @@
-import React from "react";
-import GoogleLogin from "react-google-login";
-import { useLogin, useNotify, Notification } from "react-admin";
+import React from 'react';
+import GoogleLogin from 'react-google-login';
+import { useLogin, useNotify, Notification } from 'react-admin';
 
-import "./Login.css";
+import './Login.css';
 
 const Login = ({ theme }) => {
   const login = useLogin();
