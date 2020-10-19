@@ -22,8 +22,10 @@ export default {
 
   getOne: async (resource, { id }) => {
     const url = `${resource}/${id}`;
-    const { json } = await httpClient(url);
-    return { data: json };
+    const {
+      json: { [resource.slice(0, -1)]: data },
+    } = await httpClient(url);
+    return { data };
   },
 
   getMany: (resource, params) => Promise,
@@ -32,29 +34,33 @@ export default {
 
   create: async (resource, { data }) => {
     const url = `${resource}`;
-    const { json } = await httpClient(url, {
+    const {
+      json: { [resource.slice(0, -1)]: newItem },
+    } = await httpClient(url, {
       method: 'POST',
       body: JSON.stringify(data),
     });
-    return { data: json, id: json.id };
+    return { data: newItem, newItem: newItem?.id };
   },
 
   update: async (resource, params) => {
     const { id, data } = params;
     const url = `${resource}/${id}`;
-    const { json } = await httpClient(url, {
+    const {
+      json: { [resource.slice(0, -1)]: updatedItem },
+    } = await httpClient(url, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
-    return { data: json };
+    return { data: updatedItem };
   },
 
   updateMany: (resource, params) => Promise,
 
   delete: async (resource, { id }) => {
     const url = `${resource}/${id}`;
-    const { json } = await httpClient(url, { method: 'DELETE' });
-    return { data: json };
+    await httpClient(url, { method: 'DELETE' });
+    return { data: { id } };
   },
 
   deleteMany: async (resource, { ids }) => {
