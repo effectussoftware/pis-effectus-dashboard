@@ -34,11 +34,7 @@ export default {
 
   create: async (resource, { data }) => {
     const url = `${resource}`;
-    if (data.image) {
-      const { image } = data;
-      const base64Image = await convertFileToBase64(image);
-      data.image = base64Image;
-    }
+    await transformData(data);
     const {
       json: { [resource.slice(0, -1)]: newItem },
     } = await httpClient(url, {
@@ -51,11 +47,7 @@ export default {
   update: async (resource, params) => {
     const { id, data } = params;
     const url = `${resource}/${id}`;
-    if (data.image) {
-      const { image } = data;
-      const base64Image = await convertFileToBase64(image);
-      data.image = base64Image;
-    }
+    await transformData(data);
     const {
       json: { [resource.slice(0, -1)]: updatedItem },
     } = await httpClient(url, {
@@ -77,6 +69,14 @@ export default {
     const data = await Promise.all(ids.map(deleteOneforEach, resource));
     return { data };
   },
+};
+
+const transformData = async (data) => {
+  if (data.image) {
+    const { image } = data;
+    const base64Image = await convertFileToBase64(image);
+    data.image = base64Image;
+  }
 };
 
 const convertFileToBase64 = (file) =>
