@@ -34,6 +34,11 @@ export default {
 
   create: async (resource, { data }) => {
     const url = `${resource}`;
+    if (data.image) {
+      const { image } = data;
+      const base64Image = await convertFileToBase64(image);
+      data.image = base64Image;
+    }
     const {
       json: { [resource.slice(0, -1)]: newItem },
     } = await httpClient(url, {
@@ -46,6 +51,11 @@ export default {
   update: async (resource, params) => {
     const { id, data } = params;
     const url = `${resource}/${id}`;
+    if (data.image) {
+      const { image } = data;
+      const base64Image = await convertFileToBase64(image);
+      data.image = base64Image;
+    }
     const {
       json: { [resource.slice(0, -1)]: updatedItem },
     } = await httpClient(url, {
@@ -68,3 +78,12 @@ export default {
     return { data };
   },
 };
+
+const convertFileToBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file.rawFile);
+  });
