@@ -1,3 +1,5 @@
+import { IMAGE } from '../components/Communication/consts';
+
 const convertFileToBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
