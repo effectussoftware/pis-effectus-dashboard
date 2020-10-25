@@ -18,18 +18,9 @@ export const CommunicationEdit = (props) => (
       <TextInput source={TITLE} validate={[required()]} />
       <TextInput multiline source={TEXT} validate={[required()]} />
       <ImageInput source={IMAGE} label="Cambiar imagen" accept="image/*">
-        <ImageField source={IMAGE} title="title" />
+        <ImageField source="src" title="title" />
       </ImageInput>
       <BooleanInput label="Published" source={IS_PUBLISHED} />
     </SimpleForm>
   </Edit>
 );
-
-const convertFileToBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-
-    reader.readAsDataURL(file);
-  });
