@@ -7,11 +7,9 @@ const convertFileToBase64 = (file) =>
     reader.readAsDataURL(file.rawFile);
   });
 
-export const formImageDataToBase64 = async (formData) => {
-  if (formData.image) {
-    const { image } = formData;
-    const base64Image = await convertFileToBase64(image);
-    formData.image = base64Image;
-  }
-  return formData;
-};
+export const formImageDataToBase64 = async (formData) => ({
+  ...formData,
+  [IMAGE]: formData.image
+    ? await convertFileToBase64(formData.image)
+    : undefined,
+});
