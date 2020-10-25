@@ -1,4 +1,5 @@
 import httpClient from './httpClient';
+import fileUploadWrapper from './fileUploadWrapper';
 
 async function deleteOneforEach(currentValue, index, array) {
   const id = currentValue;
@@ -8,7 +9,7 @@ async function deleteOneforEach(currentValue, index, array) {
   return { data: json };
 }
 
-export default {
+const dataProvider = {
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
     const url = `${resource}?page=${page}&per_page=${perPage}`;
@@ -38,7 +39,7 @@ export default {
       json: { [resource.slice(0, -1)]: newItem },
     } = await httpClient(url, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ [resource.slice(0, -1)]: data }),
     });
     return { data: newItem, newItem: newItem?.id };
   },
@@ -50,7 +51,7 @@ export default {
       json: { [resource.slice(0, -1)]: updatedItem },
     } = await httpClient(url, {
       method: 'PUT',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ [resource.slice(0, -1)]: data }),
     });
     return { data: updatedItem };
   },
@@ -68,3 +69,5 @@ export default {
     return { data };
   },
 };
+
+export default fileUploadWrapper(dataProvider);
