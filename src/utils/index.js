@@ -1,3 +1,5 @@
+import { IMAGE } from '../components/Communication/consts';
+
 const convertFileToBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -7,16 +9,9 @@ const convertFileToBase64 = (file) =>
     reader.readAsDataURL(file.rawFile);
   });
 
-export const formImageDataToBase64 = async (formData) => {
-  const { image } = formData;
-  if (image) {
-    if (typeof image !== 'string') {
-      const { image } = formData;
-      const base64Image = await convertFileToBase64(image);
-      formData.image = base64Image;
-    } else {
-      delete formData.image;
-    }
-  }
-  return formData;
-};
+export const formImageDataToBase64 = async (formData) => ({
+  ...formData,
+  [IMAGE]: (formData[IMAGE] && typeof formData[IMAGE] !== 'string')
+    ? await convertFileToBase64(formData.image)
+    : undefined,
+});
