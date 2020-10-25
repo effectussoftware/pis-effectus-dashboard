@@ -51,7 +51,7 @@ export default {
       json: { [resource.slice(0, -1)]: newItem },
     } = await httpClient(url, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ [resource.slice(0, -1)]: data }),
     });
     return { data: newItem, newItem: newItem?.id };
   },
@@ -63,7 +63,7 @@ export default {
       json: { [resource.slice(0, -1)]: updatedItem },
     } = await httpClient(url, {
       method: 'PUT',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ [resource.slice(0, -1)]: data }),
     });
     return { data: updatedItem };
   },

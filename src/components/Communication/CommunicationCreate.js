@@ -18,6 +18,7 @@ import {
   DATE_TIME,
   IMAGE,
 } from './consts';
+import { formImageDataToBase64 } from '../../utils';
 import { MyDateTimeInput } from './MyDateTime';
 import ConditionalInput from '../common/ConditionalInput';
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
 });
 
 export const CommunicationCreate = (props) => (
-  <Create {...props} classes={useStyles()}>
+  <Create {...props} classes={useStyles()} transform={formImageDataToBase64}>
     <SimpleForm>
       <TextInput source={TITLE} validate={[required()]} />
       <TextInput multiline source={TEXT} validate={[required()]} />

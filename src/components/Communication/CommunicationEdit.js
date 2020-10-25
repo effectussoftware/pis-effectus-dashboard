@@ -8,10 +8,11 @@ import {
   ImageField,
   required,
 } from 'react-admin';
+import { formImageDataToBase64 } from '../../utils';
 import { ID, TITLE, TEXT, IS_PUBLISHED, IMAGE } from './consts';
 
 export const CommunicationEdit = (props) => (
-  <Edit {...props}>
+  <Edit transform={formImageDataToBase64} {...props}>
     <SimpleForm>
       <TextInput disable source={ID} />
       <TextInput source={TITLE} validate={[required()]} />
