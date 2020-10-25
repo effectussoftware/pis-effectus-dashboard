@@ -7,6 +7,9 @@ import {
   ImageInput,
   ImageField,
   required,
+  useNotify,
+  useRefresh,
+  useRedirect,
 } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -26,8 +29,19 @@ const useStyles = makeStyles({
   card: { overflow: 'visible' },
 });
 
-export const CommunicationCreate = (props) => (
-  <Create {...props} classes={useStyles()} transform={formImageDataToBase64}>
+export const CommunicationCreate = (props) => {
+  const notify = useNotify();
+  const refresh = useRefresh();
+  const redirect = useRedirect();
+
+  const onSuccess = () => {
+    notify("El comunicado fue creado de forma exitosa")
+    redirect("/communications");
+    refresh();
+  };
+
+  return (
+  <Create {...props} classes={useStyles()} transform={formImageDataToBase64} onSuccess={onSuccess} >
     <SimpleForm>
       <TextInput source={TITLE} validate={[required()]} />
       <TextInput multiline source={TEXT} validate={[required()]} />
@@ -47,4 +61,4 @@ export const CommunicationCreate = (props) => (
       />
     </SimpleForm>
   </Create>
-);
+)};
