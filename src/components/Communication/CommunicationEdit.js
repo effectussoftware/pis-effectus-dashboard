@@ -5,11 +5,12 @@ import {
   TextInput,
   BooleanInput,
   ImageInput,
-  ImageField,
   required,
 } from 'react-admin';
+
 import { formImageDataToBase64 } from '../../utils';
 import { ID, TITLE, TEXT, IS_PUBLISHED, IMAGE } from './consts';
+import MyImageField from './MyImageField';
 
 export const CommunicationEdit = (props) => (
   <Edit transform={formImageDataToBase64} {...props}>
@@ -18,7 +19,7 @@ export const CommunicationEdit = (props) => (
       <TextInput source={TITLE} validate={[required()]} />
       <TextInput multiline source={TEXT} validate={[required()]} />
       <ImageInput source={IMAGE} label="Cambiar imagen" accept="image/*">
-        <ImageField source="src" title="title" />
+        <MyImageField source="src" />
       </ImageInput>
       <BooleanInput label="Published" source={IS_PUBLISHED} />
     </SimpleForm>

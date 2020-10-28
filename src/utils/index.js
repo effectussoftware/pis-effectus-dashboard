@@ -11,7 +11,7 @@ const convertFileToBase64 = (file) =>
 
 export const formImageDataToBase64 = async (formData) => ({
   ...formData,
-  [IMAGE]: formData.image
+  [IMAGE]: (formData[IMAGE] && typeof formData[IMAGE] !== 'string')
     ? await convertFileToBase64(formData.image)
     : undefined,
 });
