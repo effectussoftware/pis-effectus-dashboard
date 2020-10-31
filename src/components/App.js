@@ -16,6 +16,13 @@ import {
   CommunicationEdit,
 } from './Communication';
 
+import {
+  ReviewList,
+  ReviewCreate,
+  ReviewEdit,
+} from './Review';
+
+
 const App = () => (
   <Admin
     theme={theme}
@@ -29,6 +36,12 @@ const App = () => (
       list={CommunicationList}
       create={CommunicationCreate}
       edit={CommunicationEdit}
+    />
+    <Resource
+      name="reviews"
+      list={ReviewList}
+      create={ReviewCreate}
+      edit={ReviewEdit}
     />
   </Admin>
 );
