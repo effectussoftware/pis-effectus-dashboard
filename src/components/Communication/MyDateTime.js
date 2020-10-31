@@ -1,15 +1,25 @@
 import * as React from 'react';
-import DateTimePicker from 'react-datetime-picker';
+import DatePicker from 'react-datepicker';
 import { Field } from 'react-final-form';
+import 'react-datepicker/dist/react-datepicker.css';
+import { TextInput } from 'react-admin';
 
 export const MyDateTimeInput = ({ source }) => {
   const today = new Date();
 
   return (
     <Field name={source} initialValue={today}>
-      {({ input }) => (
+      {({ input: { value, onChange, ...input } }) => (
         <div>
-          <DateTimePicker {...input} />
+          <DatePicker
+            showTimeSelect
+            timeIntervals={60}
+            dateFormat="MMMM d, h:mm aa"
+            selected={value}
+            onChange={onChange}
+            customInput={<TextInput />}
+            {...input}
+          />
         </div>
       )}
     </Field>
