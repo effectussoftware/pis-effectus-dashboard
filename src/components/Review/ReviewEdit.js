@@ -40,8 +40,13 @@ export const ReviewEdit = (props) => (
       </ReferenceInput>
       <TextInput source={TITLE} />
       <TextInput multiline source={TEXT} />
-      <ActionItemListInput source={USER_ACTION_LIST} label="Employee actions" />
       <ActionItemListInput
+        isEdit
+        source={USER_ACTION_LIST}
+        label="Employee actions"
+      />
+      <ActionItemListInput
+        isEdit
         source={REVIEWER_ACTION_LIST}
         label="Effectus actions"
       />

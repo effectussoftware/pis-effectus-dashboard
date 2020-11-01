@@ -1,24 +1,28 @@
 import * as React from 'react';
-import {
-  ArrayInput,
-  SimpleFormIterator,
-  TextInput,
-  BooleanInput,
-  required,
-} from 'react-admin';
+import { ArrayInput, TextInput, BooleanInput, required } from 'react-admin';
+import { useFormState, useForm } from 'react-final-form';
 
+import ActionItemIterator from './ActionItemIterator';
 import { DESCRIPTION, COMPLETED } from './consts';
 
-const ActionItemListInput = ({
-  source,
-  label,
-  disableAdd,
-  disableRemove,
-  disableCompleted,
-}) => {
+const ActionItemListInput = ({ source, label, disableCompleted, isEdit }) => {
+  const { values } = useFormState();
+  const { registerField, change } = useForm();
+
+  const handleRemove = (id, source) => {
+    const fieldName = `${source}_toDestroy`;
+    const toDestroy = values[fieldName];
+    if (!toDestroy) {
+      registerField(fieldName, () => {}, {});
+      change(fieldName, [id]);
+    } else {
+      change(fieldName, [...toDestroy, id]);
+    }
+  };
+
   return (
     <ArrayInput source={source} label={label}>
-      <SimpleFormIterator disableAdd={disableAdd} disableRemove={disableRemove}>
+      <ActionItemIterator handleRemove={isEdit ? handleRemove : undefined}>
         <TextInput
           source={DESCRIPTION}
           label="description"
@@ -30,7 +34,7 @@ const ActionItemListInput = ({
           label="completed"
           defaultValue={false}
         />
-      </SimpleFormIterator>
+      </ActionItemIterator>
     </ArrayInput>
   );
 };
