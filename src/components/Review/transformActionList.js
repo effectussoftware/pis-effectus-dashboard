@@ -6,12 +6,23 @@ import {
 } from './consts';
 
 const transformActionList = (formData) => {
-  var newData = formData;
-  newData[USER_ACTION_LIST_ATT] = formData[USER_ACTION_LIST];
-  newData[REVIEWER_ACTION_LIST_ATT] = formData[REVIEWER_ACTION_LIST];
-  delete newData[USER_ACTION_LIST];
-  delete newData[REVIEWER_ACTION_LIST];
-  return newData;
+  // eslint-disable-next-line no-unused-expressions
+  formData[`${USER_ACTION_LIST}_toDestroy`]?.forEach((id) => {
+    formData[USER_ACTION_LIST][id] = { _destroy: true, id };
+  });
+  delete formData[`${USER_ACTION_LIST}_toDestroy`];
+
+  // eslint-disable-next-line no-unused-expressions
+  formData[`${REVIEWER_ACTION_LIST}_toDestroy`]?.forEach((id) => {
+    formData[REVIEWER_ACTION_LIST][id] = { _destroy: true, id };
+  });
+  delete formData[`${REVIEWER_ACTION_LIST}_toDestroy`];
+
+  formData[USER_ACTION_LIST_ATT] = formData[USER_ACTION_LIST];
+  formData[REVIEWER_ACTION_LIST_ATT] = formData[REVIEWER_ACTION_LIST];
+  delete formData[USER_ACTION_LIST];
+  delete formData[REVIEWER_ACTION_LIST];
+  return formData;
 };
 
 export default transformActionList;
