@@ -5,7 +5,7 @@ import { USER_INFO } from '../constants';
 export default {
   login: async (googleUser) => {
     const { id_token: token } = googleUser.getAuthResponse();
-    await request('auth/login', {
+    return request('auth/login', {
       method: 'POST',
       body: JSON.stringify({
         token,
