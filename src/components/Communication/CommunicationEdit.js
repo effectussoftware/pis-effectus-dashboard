@@ -13,7 +13,7 @@ import { ID, TITLE, TEXT, IS_PUBLISHED, IMAGE } from './consts';
 import MyImageField from './MyImageField';
 
 export const CommunicationEdit = (props) => (
-  <Edit transform={formImageDataToBase64} {...props}>
+  <Edit undoable={false} transform={formImageDataToBase64} {...props}>
     <SimpleForm>
       <TextInput disable source={ID} />
       <TextInput source={TITLE} validate={[required()]} />
