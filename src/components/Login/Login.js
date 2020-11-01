@@ -12,8 +12,7 @@ const Login = ({ theme }) => {
     try {
       await login(googleUser);
     } catch (error) {
-      console.error(error.message);
-      notify(error.message);
+      notify(error.message || 'Something went wrong.');
     }
   };
 
