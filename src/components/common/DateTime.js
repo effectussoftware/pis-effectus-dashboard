@@ -4,11 +4,11 @@ import { Field } from 'react-final-form';
 import 'react-datepicker/dist/react-datepicker.css';
 import { TextInput } from 'react-admin';
 
-export const MyDateTimeInput = ({ source }) => {
+const DateTimeInput = ({ source, label, ...props }) => {
   const today = new Date();
 
   return (
-    <Field name={source} initialValue={today}>
+    <Field name={source} initialValue={today} {...props}>
       {({ input: { value, onChange, ...input } }) => (
         <div>
           <DatePicker
@@ -17,7 +17,7 @@ export const MyDateTimeInput = ({ source }) => {
             dateFormat="MMMM d, h:mm aa"
             selected={value}
             onChange={onChange}
-            customInput={<TextInput />}
+            customInput={<TextInput label={label} />}
             {...input}
           />
         </div>
@@ -25,3 +25,5 @@ export const MyDateTimeInput = ({ source }) => {
     </Field>
   );
 };
+
+export default DateTimeInput;
