@@ -4,6 +4,7 @@ import { useFormState, useForm } from 'react-final-form';
 
 import ActionItemIterator from './ActionItemIterator';
 import { DESCRIPTION, COMPLETED } from './consts';
+import ConditionalInput from '../common/ConditionalInput';
 
 const ActionItemListInput = ({ source, label, disableCompleted, isEdit }) => {
   const { values } = useFormState();
@@ -28,7 +29,9 @@ const ActionItemListInput = ({ source, label, disableCompleted, isEdit }) => {
           label="description"
           validate={[required()]}
         />
-        <BooleanInput
+        <ConditionalInput
+          inputComponent={<BooleanInput />}
+          conditionValue={isEdit}
           disabled={disableCompleted}
           source={COMPLETED}
           label="completed"

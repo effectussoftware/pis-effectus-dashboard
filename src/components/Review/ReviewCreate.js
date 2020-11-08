@@ -41,11 +41,12 @@ export const ReviewCreate = (props) => {
           label="usuario"
           reference="users"
           validate={[required()]}
+          filter={{ is_active: true }}
         >
           <SelectInput optionText={USER_NAME} />
         </ReferenceInput>
-        <TextInput source={TITLE} />
-        <TextInput multiline source={TEXT} />
+        <TextInput source={TITLE} validate={[required()]} />
+        <TextInput multiline source={TEXT} fullWidth />
         <ActionItemListInput
           source={USER_ACTION_LIST}
           disableCompleted

@@ -17,7 +17,7 @@ const CommunicationsBulkActionButtons = (props) => {
       </div>
     </Tooltip>
   ) : (
-    <BulkDeleteButton {...props} />
+    <BulkDeleteButton undoable={false} {...props} />
   );
 };
 

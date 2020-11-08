@@ -11,10 +11,11 @@ import {
 import { formImageDataToBase64 } from '../../utils';
 import { ID, TITLE, TEXT, IS_PUBLISHED, IMAGE } from './consts';
 import MyImageField from './MyImageField';
+import ConfirmDeleteToolbar from '../common/ConfirmDeleteToolbar';
 
 export const CommunicationEdit = (props) => (
   <Edit undoable={false} transform={formImageDataToBase64} {...props}>
-    <SimpleForm>
+    <SimpleForm toolbar={<ConfirmDeleteToolbar />}>
       <TextInput disable source={ID} />
       <TextInput source={TITLE} validate={[required()]} />
       <TextInput multiline source={TEXT} validate={[required()]} />

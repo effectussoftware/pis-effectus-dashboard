@@ -18,17 +18,18 @@ import {
   USER_NAME,
 } from './consts';
 import transformActionList from './transformActionList';
+import ConfirmDeleteToolbar from '../common/ConfirmDeleteToolbar';
 
 export const ReviewEdit = (props) => (
   <Edit transform={transformActionList} {...props}>
-    <SimpleForm>
+    <SimpleForm toolbar={<ConfirmDeleteToolbar />}>
       <ReferenceInput
         disable
         source={USER_ID}
         label="usuario"
         reference="users"
       >
-        <SelectInput optionText={USER_NAME} />
+        <SelectInput disable optionText={USER_NAME} />
       </ReferenceInput>
       <ReferenceInput
         disable
@@ -36,10 +37,10 @@ export const ReviewEdit = (props) => (
         label="reviewer"
         reference="users"
       >
-        <SelectInput optionText={USER_NAME} />
+        <SelectInput disable optionText={USER_NAME} />
       </ReferenceInput>
-      <TextInput source={TITLE} />
-      <TextInput multiline source={TEXT} />
+      <TextInput disable source={TITLE} />
+      <TextInput multiline source={TEXT} fullWidth />
       <ActionItemListInput
         isEdit
         source={USER_ACTION_LIST}
