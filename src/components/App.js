@@ -16,7 +16,7 @@ import {
   CommunicationEdit,
 } from './Communication';
 
-import { EventCreate, EventList, EventShow } from './Event';
+import { EventCreate, EventList, EventShow, EventEdit } from './Event';
 
 import { ReviewList, ReviewCreate, ReviewEdit } from './Review';
 
@@ -43,6 +43,7 @@ const App = () => (
     <Resource
       name="events"
       show={EventShow}
+      edit={EventEdit}
       list={EventList}
       create={EventCreate}
     />
