@@ -6,6 +6,7 @@ import {
   DateField,
   NumberField,
   BooleanField,
+  EditButton,
 } from 'react-admin';
 
 import { NAME, ADDRESS, START_TIME, END_TIME, COST, CANCELLED } from './consts';
@@ -19,6 +20,7 @@ export const EventList = (props) => (
       <DateField source={END_TIME} />
       <NumberField source={COST} />
       <BooleanField source={CANCELLED} />
+      <EditButton />
     </Datagrid>
   </List>
 );

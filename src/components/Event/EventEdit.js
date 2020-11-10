@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Create,
+  Edit,
   SimpleForm,
   TextInput,
   required,
@@ -28,7 +28,7 @@ const transformInvitations = ({ invitations_attributes, ...rest }) => ({
   ...rest,
 });
 
-export const EventCreate = (props) => {
+export const EventEdit = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
@@ -40,7 +40,7 @@ export const EventCreate = (props) => {
   };
 
   return (
-    <Create {...props} transform={transformInvitations} onSuccess={onSuccess}>
+    <Edit {...props} transform={transformInvitations} onSuccess={onSuccess}>
       <SimpleForm>
         <TextInput source={NAME} validate={[required()]} />
         <TextInput multiline source={DESCRIPTION} validate={[required()]} />
@@ -56,6 +56,6 @@ export const EventCreate = (props) => {
           <SelectArrayInput optionText="name" />
         </ReferenceArrayInput>
       </SimpleForm>
-    </Create>
+    </Edit>
   );
 };
