@@ -11,6 +11,9 @@ import {
   ReferenceArrayInput,
   SelectArrayInput,
 } from 'react-admin';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
 
 import {
   NAME,
@@ -23,10 +26,26 @@ import {
 } from './consts';
 import DateTimeInput from '../common/DateTime';
 
+const MarginLeftButton = withStyles({ root: { marginLeft: '20px' } })(Button);
+
 const transformInvitations = ({ invitations_attributes, ...rest }) => ({
   invitations_attributes: invitations_attributes.map((id) => ({ user_id: id })),
   ...rest,
 });
+
+const withSelectAllButton = (Component) => (props) => (
+  <Box display="flex" alignItems="center">
+    <Component {...props} />
+    <MarginLeftButton
+      variant="contained"
+      onClick={() => props.input.onChange(props.choices.map(({ id }) => id))}
+    >
+      Agregar todos
+    </MarginLeftButton>
+  </Box>
+);
+
+const GuestsSelector = withSelectAllButton(SelectArrayInput);
 
 export const EventCreate = (props) => {
   const notify = useNotify();
@@ -53,7 +72,7 @@ export const EventCreate = (props) => {
           source={INVITATIONS_ATTRIBUTES}
           reference="users"
         >
-          <SelectArrayInput optionText="name" />
+          <GuestsSelector optionText="name" />
         </ReferenceArrayInput>
       </SimpleForm>
     </Create>
