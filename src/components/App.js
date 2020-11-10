@@ -16,12 +16,9 @@ import {
   CommunicationEdit,
 } from './Communication';
 
-import {
-  ReviewList,
-  ReviewCreate,
-  ReviewEdit,
-} from './Review';
+import { EventCreate, EventList, EventShow } from './Event';
 
+import { ReviewList, ReviewCreate, ReviewEdit } from './Review';
 
 const App = () => (
   <Admin
@@ -42,6 +39,12 @@ const App = () => (
       list={ReviewList}
       create={ReviewCreate}
       edit={ReviewEdit}
+    />
+    <Resource
+      name="events"
+      show={EventShow}
+      list={EventList}
+      create={EventCreate}
     />
   </Admin>
 );

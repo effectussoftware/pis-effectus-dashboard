@@ -1,0 +1,10 @@
+export const ID = 'id';
+export const NAME = 'name';
+export const DATE = 'date';
+export const DESCRIPTION = 'description';
+export const ADDRESS = 'address';
+export const START_TIME = 'start_time';
+export const END_TIME = 'end_time';
+export const COST = 'cost';
+export const CANCELLED = 'cancelled';
+export const INVITATIONS_ATTRIBUTES = 'invitations_attributes';
