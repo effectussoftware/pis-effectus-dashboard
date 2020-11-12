@@ -22,7 +22,7 @@ import {
   IMAGE,
 } from './consts';
 import { formImageDataToBase64 } from '../../utils';
-import { MyDateTimeInput } from './MyDateTime';
+import DateTimeInput from '../common/DateTime';
 import ConditionalInput from '../common/ConditionalInput';
 
 const useStyles = makeStyles({
@@ -35,30 +35,36 @@ export const CommunicationCreate = (props) => {
   const redirect = useRedirect();
 
   const onSuccess = () => {
-    notify("El comunicado fue creado de forma exitosa")
-    redirect("/communications");
+    notify('El comunicado fue creado de forma exitosa');
+    redirect('/communications');
     refresh();
   };
 
   return (
-  <Create {...props} classes={useStyles()} transform={formImageDataToBase64} onSuccess={onSuccess} >
-    <SimpleForm>
-      <TextInput source={TITLE} validate={[required()]} />
-      <TextInput multiline source={TEXT} validate={[required()]} />
-      <ImageInput source={IMAGE} label="Agregar una imagen" accept="image/*">
-        <ImageField source="src" title="title" />
-      </ImageInput>
-      <BooleanInput
-        label="Published"
-        source={IS_PUBLISHED}
-        defaultValue={false}
-      />
-      <BooleanInput source={IS_RECURRENT} defaultValue={false} />
-      <ConditionalInput
-        inputComponent={<MyDateTimeInput />}
-        conditionField={IS_RECURRENT}
-        source={DATE_TIME}
-      />
-    </SimpleForm>
-  </Create>
-)};
+    <Create
+      {...props}
+      classes={useStyles()}
+      transform={formImageDataToBase64}
+      onSuccess={onSuccess}
+    >
+      <SimpleForm>
+        <TextInput source={TITLE} validate={[required()]} />
+        <TextInput multiline source={TEXT} validate={[required()]} />
+        <ImageInput source={IMAGE} label="Agregar una imagen" accept="image/*">
+          <ImageField source="src" title="title" />
+        </ImageInput>
+        <BooleanInput
+          label="Published"
+          source={IS_PUBLISHED}
+          defaultValue={false}
+        />
+        <BooleanInput source={IS_RECURRENT} defaultValue={false} />
+        <ConditionalInput
+          inputComponent={<DateTimeInput />}
+          conditionField={IS_RECURRENT}
+          source={DATE_TIME}
+        />
+      </SimpleForm>
+    </Create>
+  );
+};
