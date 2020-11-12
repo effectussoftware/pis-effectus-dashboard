@@ -9,7 +9,6 @@ import {
   useRedirect,
   NumberInput,
   ReferenceArrayInput,
-  SelectArrayInput,
 } from 'react-admin';
 
 import {
@@ -22,11 +21,8 @@ import {
   INVITATIONS_ATTRIBUTES,
 } from './consts';
 import DateTimeInput from '../common/DateTime';
-
-const transformInvitations = ({ invitations_attributes, ...rest }) => ({
-  invitations_attributes: invitations_attributes.map((id) => ({ user_id: id })),
-  ...rest,
-});
+import GuestsSelector from './GuestsSelector';
+import transformInvitations from './transfomInvitations';
 
 export const EventCreate = (props) => {
   const notify = useNotify();
@@ -53,7 +49,7 @@ export const EventCreate = (props) => {
           source={INVITATIONS_ATTRIBUTES}
           reference="users"
         >
-          <SelectArrayInput optionText="name" />
+          <GuestsSelector />
         </ReferenceArrayInput>
       </SimpleForm>
     </Create>
