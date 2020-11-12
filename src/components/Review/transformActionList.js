@@ -3,7 +3,25 @@ import {
   REVIEWER_ACTION_LIST,
   USER_ACTION_LIST_ATT,
   REVIEWER_ACTION_LIST_ATT,
+  COMPLETED,
 } from './consts';
+
+const renameAndDelete = (form, old_name, new_name) => {
+  form[new_name] = form[old_name];
+  delete form[old_name];
+};
+
+const addDefaultCompleted = (form, attribute) => {
+  if (!form[attribute]) return;
+  form[attribute].forEach((actionItem) => {
+    if (
+      !actionItem.hasOwnProperty(COMPLETED) &&
+      !actionItem.hasOwnProperty('_destroy')
+    ) {
+      actionItem[COMPLETED] = false;
+    }
+  });
+};
 
 const transformActionList = (formData) => {
   // eslint-disable-next-line no-unused-expressions
@@ -18,10 +36,11 @@ const transformActionList = (formData) => {
   });
   delete formData[`${REVIEWER_ACTION_LIST}_toDestroy`];
 
-  formData[USER_ACTION_LIST_ATT] = formData[USER_ACTION_LIST];
-  formData[REVIEWER_ACTION_LIST_ATT] = formData[REVIEWER_ACTION_LIST];
-  delete formData[USER_ACTION_LIST];
-  delete formData[REVIEWER_ACTION_LIST];
+  renameAndDelete(formData, USER_ACTION_LIST, USER_ACTION_LIST_ATT);
+  renameAndDelete(formData, REVIEWER_ACTION_LIST, REVIEWER_ACTION_LIST_ATT);
+
+  addDefaultCompleted(formData, USER_ACTION_LIST_ATT);
+  addDefaultCompleted(formData, REVIEWER_ACTION_LIST_ATT);
   return formData;
 };
 
