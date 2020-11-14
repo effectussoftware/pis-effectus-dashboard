@@ -7,17 +7,25 @@ import TextField from '@material-ui/core/TextField';
 
 const MarginLeftButton = withStyles({ root: { marginLeft: '20px' } })(Button);
 
-const GuestsSelector = ({ choices, input }) => (
+const GuestsSelector = ({ choices, input, meta: { error, touched } }) => (
   <Box display="flex" alignItems="flex-start">
     <Autocomplete
       multiple
       style={{ width: 260 }}
       options={choices}
+      onBlur={input.onBlur}
+      onFocus={input.onFocus}
       value={input?.value || []}
       onChange={(_, values) => input.onChange(values)}
       getOptionLabel={({ name }) => name}
       renderInput={(params) => (
-        <TextField {...params} variant="standard" label="Invitados" />
+        <TextField
+          {...params}
+          error={touched && error}
+          variant="standard"
+          label="Invitados"
+          required
+        />
       )}
     />
     <MarginLeftButton

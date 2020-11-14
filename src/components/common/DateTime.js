@@ -4,7 +4,7 @@ import { Field } from 'react-final-form';
 import 'react-datepicker/dist/react-datepicker.css';
 import { TextInput } from 'react-admin';
 
-const DateTimeInput = ({ source, label, initialValue, ...props }) => (
+const DateTimeInput = ({ source, label, ...props }) => (
   <Field name={source} {...props}>
     {({ input: { value, ...input } }) => (
       <div>
@@ -12,7 +12,7 @@ const DateTimeInput = ({ source, label, initialValue, ...props }) => (
           showTimeSelect
           timeIntervals={60}
           dateFormat="MMMM d, h:mm aa"
-          selected={value ? new Date(value) : new Date()}
+          selected={value ? new Date(value) : undefined}
           customInput={<TextInput label={label} />}
           {...input}
         />
