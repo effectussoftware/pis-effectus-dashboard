@@ -16,7 +16,7 @@ import ConfirmDeleteToolbar from '../common/ConfirmDeleteToolbar';
 export const CommunicationEdit = (props) => (
   <Edit undoable={false} transform={formImageDataToBase64} {...props}>
     <SimpleForm toolbar={<ConfirmDeleteToolbar />}>
-      <TextInput disable source={ID} />
+      <TextInput disabled source={ID} />
       <TextInput source={TITLE} validate={[required()]} />
       <TextInput multiline source={TEXT} validate={[required()]} />
       <ImageInput source={IMAGE} label="Cambiar imagen" accept="image/*">
