@@ -7,4 +7,5 @@ export const START_TIME = 'start_time';
 export const END_TIME = 'end_time';
 export const COST = 'cost';
 export const CANCELLED = 'cancelled';
-export const INVITATIONS_ATTRIBUTES = 'invitations_attributes';
+export const INVITATIONS = 'invitations_attributes';
+export const USERS = 'users';
