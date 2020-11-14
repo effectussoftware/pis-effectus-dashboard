@@ -18,8 +18,9 @@ import {
   START_TIME,
   END_TIME,
   COST,
-  INVITATIONS_ATTRIBUTES,
+  INVITATIONS,
 } from './consts';
+import { NAME as USER_NAME } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
@@ -38,26 +39,31 @@ export const EventCreate = (props) => {
   return (
     <Create {...props} transform={transformInvitations} onSuccess={onSuccess}>
       <SimpleForm>
-        <TextInput source={NAME} validate={required()} />
-        <TextInput multiline source={DESCRIPTION} validate={required()} />
-        <TextInput source={ADDRESS} validate={required()} />
-        <NumberInput source={COST} />
+        <TextInput source={NAME} label="Nombre" validate={required()} />
+        <TextInput
+          multiline
+          source={DESCRIPTION}
+          label="Descripción"
+          validate={required()}
+        />
+        <TextInput source={ADDRESS} label="Dirección" validate={required()} />
+        <NumberInput source={COST} label="Costo" />
         <DateTimeInput
           precise
-          label="Start time"
+          label="Hora de comienzo"
           source={START_TIME}
           validate={required()}
         />
         <DateTimeInput
           precise
-          label="End time"
+          label="Hora de finalización"
           source={END_TIME}
           validate={required()}
         />
         <ReferenceArrayInput
           label="Invitados"
-          source={INVITATIONS_ATTRIBUTES}
-          reference="users"
+          source={INVITATIONS}
+          reference={USER_NAME}
           validate={required()}
         >
           <GuestsSelector />

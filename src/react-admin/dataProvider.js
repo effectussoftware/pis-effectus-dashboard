@@ -8,6 +8,15 @@ async function deleteOneforEach(currentValue, index, array) {
   return { data: json };
 }
 
+async function getOneForEach({ id }) {
+  const resource = this;
+  const url = `${resource}/${id}`;
+  const {
+    json: { [resource.slice(0, -1)]: data },
+  } = await httpClient(url);
+  return { data };
+}
+
 export default {
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
@@ -15,13 +24,13 @@ export default {
     const { filter } = params;
     const page_url = `page=${page}&per_page=${perPage}`;
     const sort_url = `sort=["${field}","${order}"]`;
-    var filter_url = "";
+    var filter_url = '';
 
     // Agrego el filtro para cada campo de filter
     const filter_fields = Object.keys(filter);
-    filter_fields.forEach(
-      (element) => {filter_url = filter_url + `&${element}=${filter[element]}`}
-    );
+    filter_fields.forEach((element) => {
+      filter_url = filter_url + `&${element}=${filter[element]}`;
+    });
 
     // Armo la url
     const url = `${resource}?${page_url}&${sort_url}${filter_url}`;
@@ -41,7 +50,10 @@ export default {
     return { data };
   },
 
-  getMany: (resource, params) => Promise,
+  getMany: async (resource, { ids }) => {
+    const data = await Promise.all(ids.map(getOneForEach, resource));
+    return { data };
+  },
 
   getManyReference: (resource, params) => Promise,
 

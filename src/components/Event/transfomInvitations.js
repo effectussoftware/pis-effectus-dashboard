@@ -1,6 +1,8 @@
-export default ({ invitations_attributes, ...rest }) => ({
-  invitations_attributes:
-    invitations_attributes?.map(({ id }) => ({
+import { INVITATIONS } from './consts';
+
+export default ({ [INVITATIONS]: invitations, ...rest }) => ({
+  [INVITATIONS]:
+    invitations?.map(({ id }) => ({
       user_id: id,
     })) || [],
   ...rest,

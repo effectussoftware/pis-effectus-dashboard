@@ -9,6 +9,9 @@ import {
   useRedirect,
   NumberInput,
   ReferenceArrayInput,
+  ArrayField,
+  SingleFieldList,
+  ChipField,
 } from 'react-admin';
 
 import {
@@ -18,8 +21,10 @@ import {
   START_TIME,
   END_TIME,
   COST,
-  INVITATIONS_ATTRIBUTES,
+  INVITATIONS,
+  USERS,
 } from './consts';
+import { NAME as USER_NAME } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
@@ -30,26 +35,41 @@ export const EventEdit = (props) => {
   const redirect = useRedirect();
 
   const onSuccess = () => {
-    notify('El evento fue creado de forma exitosa');
+    notify('El evento fue editado de forma exitosa');
     redirect('/events');
     refresh();
   };
 
   return (
-    <Edit {...props} transform={transformInvitations} onSuccess={onSuccess}>
+    <Edit
+      {...props}
+      transform={transformInvitations}
+      onSuccess={onSuccess}
+      undoable={false}
+    >
       <SimpleForm>
-        <TextInput source={NAME} validate={[required()]} />
-        <TextInput multiline source={DESCRIPTION} validate={[required()]} />
-        <TextInput source={ADDRESS} validate={[required()]} />
-        <NumberInput source={COST} />
-        <DateTimeInput precise label="Start time" source={START_TIME} />
-        <DateTimeInput precise label="End time" source={END_TIME} />
+        <TextInput source={NAME} label="Nombre" validate={[required()]} />
+        <TextInput
+          multiline
+          label="Descripción"
+          source={DESCRIPTION}
+          validate={[required()]}
+        />
+        <TextInput source={ADDRESS} label="Dirección" validate={[required()]} />
+        <NumberInput source={COST} label="Costo" />
+        <DateTimeInput precise label="Hora de comienzo" source={START_TIME} />
+        <DateTimeInput precise label="Hora de finalización" source={END_TIME} />
+        <ArrayField source={USERS} label="Invitados">
+          <SingleFieldList linkType={false}>
+            <ChipField source={USER_NAME} />
+          </SingleFieldList>
+        </ArrayField>
         <ReferenceArrayInput
-          label="Invitados"
-          source={INVITATIONS_ATTRIBUTES}
-          reference="users"
+          label="Agregar invitados"
+          source={INVITATIONS}
+          reference={USERS}
         >
-          <GuestsSelector optionText="name" />
+          <GuestsSelector optionText={USER_NAME} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
