@@ -38,16 +38,27 @@ export const EventCreate = (props) => {
   return (
     <Create {...props} transform={transformInvitations} onSuccess={onSuccess}>
       <SimpleForm>
-        <TextInput source={NAME} validate={[required()]} />
-        <TextInput multiline source={DESCRIPTION} validate={[required()]} />
-        <TextInput source={ADDRESS} validate={[required()]} />
+        <TextInput source={NAME} validate={required()} />
+        <TextInput multiline source={DESCRIPTION} validate={required()} />
+        <TextInput source={ADDRESS} validate={required()} />
         <NumberInput source={COST} />
-        <DateTimeInput precise label="Start time" source={START_TIME} />
-        <DateTimeInput precise label="End time" source={END_TIME} />
+        <DateTimeInput
+          precise
+          label="Start time"
+          source={START_TIME}
+          validate={required()}
+        />
+        <DateTimeInput
+          precise
+          label="End time"
+          source={END_TIME}
+          validate={required()}
+        />
         <ReferenceArrayInput
           label="Invitados"
           source={INVITATIONS_ATTRIBUTES}
           reference="users"
+          validate={required()}
         >
           <GuestsSelector />
         </ReferenceArrayInput>
