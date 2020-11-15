@@ -8,6 +8,7 @@ import {
   useRefresh,
   useRedirect,
   NumberInput,
+  BooleanInput,
   ReferenceArrayInput,
   ArrayField,
   SingleFieldList,
@@ -23,6 +24,7 @@ import {
   COST,
   INVITATIONS,
   USERS,
+  CANCELLED,
 } from './consts';
 import { NAME as USER_NAME } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
@@ -59,6 +61,7 @@ export const EventEdit = (props) => {
         <NumberInput source={COST} label="Costo" />
         <DateTimeInput precise label="Hora de comienzo" source={START_TIME} />
         <DateTimeInput precise label="Hora de finalización" source={END_TIME} />
+        <BooleanInput source={CANCELLED} label="El evento fue cancelado?" />
         <ArrayField source={USERS} label="Invitados">
           <SingleFieldList linkType={false}>
             <ChipField source={USER_NAME} />

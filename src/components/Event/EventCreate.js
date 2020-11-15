@@ -19,8 +19,8 @@ import {
   END_TIME,
   COST,
   INVITATIONS,
+  USERS,
 } from './consts';
-import { NAME as USER_NAME } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
@@ -63,7 +63,7 @@ export const EventCreate = (props) => {
         <ReferenceArrayInput
           label="Invitados"
           source={INVITATIONS}
-          reference={USER_NAME}
+          reference={USERS}
           validate={required()}
         >
           <GuestsSelector />

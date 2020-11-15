@@ -34,7 +34,7 @@ const GuestsSelector = ({
             {...params}
             error={touched && error}
             variant="standard"
-            label="Invitados"
+            label="Invitar"
             required={required}
           />
         )}

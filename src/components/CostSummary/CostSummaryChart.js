@@ -2,14 +2,14 @@ import React from 'react';
 import { CanvasJSChart } from 'canvasjs-react-charts';
 
 const CostSummaryChart = ({ dataPoints, chartType, year }) => {
-  const chartTitle =
-    'Costo de los eventos ' +
-    (chartType === 'per year' ? 'por año' : `del ${year} por mes`);
-  const axisXTitle = chartType === 'per year' ? 'Año' : 'Mes';
+  const isPerYear = chartType === 'per year';
+  const auxChartTitle = isPerYear ? 'por año' : `del ${year} por mes`;
+  const chartTitle = `Costo de los eventos ${auxChartTitle}`;
+  const axisXTitle = isPerYear ? 'Año' : 'Mes';
   const options = {
     animationEnabled: true,
     exportEnabled: true,
-    theme: 'light2', //"light1", "dark1", "dark2"
+    theme: 'light2',
     title: { text: chartTitle },
     axisY: { includeZero: true },
     axisX: { title: axisXTitle },
@@ -20,8 +20,6 @@ const CostSummaryChart = ({ dataPoints, chartType, year }) => {
       },
     ],
   };
-  console.log({ dataPoints });
-  console.log(options);
   return <CanvasJSChart options={options} />;
 };
 
