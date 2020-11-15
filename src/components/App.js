@@ -6,6 +6,7 @@ import Login from './Login';
 import dataProvider from '../react-admin/dataProvider';
 import authProvider from '../react-admin/authProvider';
 
+import customRoutes from '../react-admin/customRoutes';
 import theme from '../react-admin/theme';
 
 import { UserList, UserEdit } from './User';
@@ -26,6 +27,7 @@ const App = () => (
     loginPage={Login}
     dataProvider={dataProvider}
     authProvider={authProvider}
+    customRoutes={customRoutes}
   >
     <Resource name="users" list={UserList} edit={UserEdit} />
     <Resource
