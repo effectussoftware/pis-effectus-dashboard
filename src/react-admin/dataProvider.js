@@ -9,7 +9,7 @@ async function deleteOneforEach(currentValue, index, array) {
 }
 
 async function getOneForEach(element) {
-  const id = element.id ? element.id : element;
+  const id = element.id || element;
   const resource = this;
   const url = `${resource}/${id}`;
   const {
