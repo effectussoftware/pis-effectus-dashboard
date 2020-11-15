@@ -26,7 +26,7 @@ import {
   USERS,
   CANCELLED,
 } from './consts';
-import { NAME as USER_NAME } from '../User/consts';
+import { NAME as USER_NAME, IS_ACTIVE as USER_IS_ACTIVE } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
@@ -71,6 +71,7 @@ export const EventEdit = (props) => {
           label="Agregar invitados"
           source={INVITATIONS}
           reference={USERS}
+          filter={{ [USER_IS_ACTIVE]: true }}
         >
           <GuestsSelector optionText={USER_NAME} />
         </ReferenceArrayInput>

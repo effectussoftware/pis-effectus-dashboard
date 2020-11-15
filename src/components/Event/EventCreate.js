@@ -21,6 +21,7 @@ import {
   INVITATIONS,
   USERS,
 } from './consts';
+import { IS_ACTIVE as USER_IS_ACTIVE } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
@@ -65,6 +66,7 @@ export const EventCreate = (props) => {
           source={INVITATIONS}
           reference={USERS}
           validate={required()}
+          filter={{ [USER_IS_ACTIVE]: true }}
         >
           <GuestsSelector />
         </ReferenceArrayInput>
