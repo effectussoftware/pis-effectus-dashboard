@@ -30,6 +30,7 @@ import { NAME as USER_NAME, IS_ACTIVE as USER_IS_ACTIVE } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
+import NoDeleteToolbar from '../common/NoDeleteToolbar';
 
 export const EventEdit = (props) => {
   const notify = useNotify();
@@ -49,7 +50,7 @@ export const EventEdit = (props) => {
       onSuccess={onSuccess}
       undoable={false}
     >
-      <SimpleForm>
+      <SimpleForm toolbar={<NoDeleteToolbar />}>
         <TextInput source={NAME} label="Nombre" validate={[required()]} />
         <TextInput
           multiline
