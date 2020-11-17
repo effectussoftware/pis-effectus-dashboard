@@ -9,6 +9,7 @@ import {
   useRedirect,
   NumberInput,
   ReferenceArrayInput,
+  BooleanInput,
 } from 'react-admin';
 
 import {
@@ -20,6 +21,7 @@ import {
   COST,
   INVITATIONS,
   USERS,
+  IS_PUBLISHED,
 } from './consts';
 import { IS_ACTIVE as USER_IS_ACTIVE } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
@@ -70,6 +72,11 @@ export const EventCreate = (props) => {
         >
           <GuestsSelector />
         </ReferenceArrayInput>
+        <BooleanInput
+          source={IS_PUBLISHED}
+          label="Publicar"
+          defaultValue={false}
+        />
       </SimpleForm>
     </Create>
   );
