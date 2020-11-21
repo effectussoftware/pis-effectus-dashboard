@@ -9,3 +9,4 @@ export const COST = 'cost';
 export const CANCELLED = 'cancelled';
 export const INVITATIONS = 'invitations_attributes';
 export const USERS = 'users';
+export const IS_PUBLISHED = 'published';

@@ -25,6 +25,7 @@ import {
   INVITATIONS,
   USERS,
   CANCELLED,
+  IS_PUBLISHED,
 } from './consts';
 import { NAME as USER_NAME, IS_ACTIVE as USER_IS_ACTIVE } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
@@ -76,6 +77,11 @@ export const EventEdit = (props) => {
         >
           <GuestsSelector optionText={USER_NAME} />
         </ReferenceArrayInput>
+        <BooleanInput
+          source={IS_PUBLISHED}
+          label="Publicar"
+          defaultValue={false}
+        />
       </SimpleForm>
     </Edit>
   );
