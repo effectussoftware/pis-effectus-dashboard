@@ -8,11 +8,12 @@ import {
   useRefresh,
   useRedirect,
   NumberInput,
-  BooleanInput,
   ReferenceArrayInput,
   ArrayField,
   SingleFieldList,
   ChipField,
+  BooleanInput,
+  useEditController,
 } from 'react-admin';
 
 import {
@@ -34,6 +35,8 @@ import transformInvitations from './transfomInvitations';
 import NoDeleteToolbar from '../common/NoDeleteToolbar';
 
 export const EventEdit = (props) => {
+  const { record } = useEditController(props);
+
   const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
@@ -61,9 +64,24 @@ export const EventEdit = (props) => {
         />
         <TextInput source={ADDRESS} label="Dirección" validate={[required()]} />
         <NumberInput source={COST} label="Costo" />
-        <DateTimeInput precise label="Hora de comienzo" source={START_TIME} />
-        <DateTimeInput precise label="Hora de finalización" source={END_TIME} />
-        <BooleanInput source={CANCELLED} label="El evento fue cancelado?" />
+        <DateTimeInput
+          precise
+          label="Hora de comienzo"
+          source={START_TIME}
+          timeIntervals={15}
+        />
+        <DateTimeInput
+          precise
+          label="Hora de finalización"
+          source={END_TIME}
+          timeIntervals={15}
+        />
+        <BooleanInput
+          source={CANCELLED}
+          label="Cancelado"
+          defaultValue={false}
+          disabled={record[CANCELLED]}
+        />
         <ArrayField source={USERS} label="Invitados">
           <SingleFieldList linkType={false}>
             <ChipField source={USER_NAME} />
@@ -81,6 +99,7 @@ export const EventEdit = (props) => {
           source={IS_PUBLISHED}
           label="Publicar"
           defaultValue={false}
+          disabled={record[IS_PUBLISHED]}
         />
       </SimpleForm>
     </Edit>

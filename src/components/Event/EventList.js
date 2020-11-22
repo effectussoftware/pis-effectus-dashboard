@@ -6,11 +6,11 @@ import {
   DateField,
   NumberField,
   BooleanField,
-  EditButton,
 } from 'react-admin';
 
 import { NAME, ADDRESS, START_TIME, END_TIME, COST, CANCELLED } from './consts';
 import EventListActions from './EventListActions';
+import ConditionalEditButton from '../common/ConditionalEditButton';
 
 export const EventList = (props) => (
   <List bulkActionButtons={false} actions={<EventListActions />} {...props}>
@@ -21,7 +21,7 @@ export const EventList = (props) => (
       <DateField source={END_TIME} />
       <NumberField source={COST} />
       <BooleanField source={CANCELLED} />
-      <EditButton />
+      <ConditionalEditButton conditionalField={CANCELLED} />
     </Datagrid>
   </List>
 );

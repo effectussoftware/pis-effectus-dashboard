@@ -56,12 +56,14 @@ export const EventCreate = (props) => {
           label="Hora de comienzo"
           source={START_TIME}
           validate={required()}
+          timeIntervals={15}
         />
         <DateTimeInput
           precise
           label="Hora de finalización"
           source={END_TIME}
           validate={required()}
+          timeIntervals={15}
         />
         <ReferenceArrayInput
           label="Invitados"

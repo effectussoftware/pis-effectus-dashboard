@@ -63,6 +63,7 @@ export const CommunicationCreate = (props) => {
           inputComponent={<DateTimeInput />}
           conditionField={IS_RECURRENT}
           source={DATE_TIME}
+          timeIntervals={60}
         />
       </SimpleForm>
     </Create>
