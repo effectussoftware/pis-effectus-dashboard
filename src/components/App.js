@@ -29,21 +29,29 @@ const App = () => (
     authProvider={authProvider}
     customRoutes={customRoutes}
   >
-    <Resource name="users" list={UserList} edit={UserEdit} />
+    <Resource
+      name="users"
+      options={{ label: 'Usuarios' }}
+      list={UserList}
+      edit={UserEdit}
+    />
     <Resource
       name="communications"
+      options={{ label: 'Comunicados' }}
       list={CommunicationList}
       create={CommunicationCreate}
       edit={CommunicationEdit}
     />
     <Resource
       name="reviews"
+      options={{ label: 'One on one' }}
       list={ReviewList}
       create={ReviewCreate}
       edit={ReviewEdit}
     />
     <Resource
       name="events"
+      options={{ label: 'Eventos' }}
       show={EventShow}
       edit={EventEdit}
       list={EventList}
