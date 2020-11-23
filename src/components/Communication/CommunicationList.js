@@ -15,7 +15,7 @@ import {
   CREATED_AT,
   UPDATED_AT,
 } from './consts';
-import EditButton from './EditButton';
+import ConditionalEditButton from '../common/ConditionalEditButton';
 
 import BulkActionButtons from './BulkActionButtons';
 
@@ -44,7 +44,7 @@ export const CommunicationList = (props) => (
       />
       <DateField source={CREATED_AT} />
       <DateField source={UPDATED_AT} />
-      <EditButton />
+      <ConditionalEditButton conditionalField={IS_PUBLISHED} />
     </Datagrid>
   </List>
 );
