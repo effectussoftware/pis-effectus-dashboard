@@ -10,3 +10,4 @@ export const CANCELLED = 'cancelled';
 export const INVITATIONS = 'invitations_attributes';
 export const USERS = 'users';
 export const IS_PUBLISHED = 'published';
+export const UPDATED_EVENT_AT = 'updated_event_at';
