@@ -23,6 +23,7 @@ import CommunicationFilter from './CommunicationFilter';
 
 export const CommunicationList = (props) => (
   <List
+    sort={{ field: UPDATED_AT, order: 'DESC' }}
     bulkActionButtons={<BulkActionButtons />}
     filters={<CommunicationFilter />}
     {...props}

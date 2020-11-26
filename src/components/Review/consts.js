@@ -10,3 +10,4 @@ export const USER_ACTION_LIST_ATT = 'user_action_items_attributes';
 export const REVIEWER_ACTION_LIST_ATT = 'reviewer_action_items_attributes';
 export const USER_NAME = 'name';
 export const CREATED_AT = 'created_at';
+export const UPDATED_AT = 'updated_at';
