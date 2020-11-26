@@ -16,6 +16,7 @@ import {
   COST,
   CANCELLED,
   UPDATED_EVENT_AT,
+  IS_PUBLISHED,
 } from './consts';
 import EventListActions from './EventListActions';
 import ConditionalEditButton from '../common/ConditionalEditButton';
@@ -35,6 +36,7 @@ export const EventList = (props) => (
       <DateField source={UPDATED_EVENT_AT} />
       <NumberField source={COST} />
       <BooleanField source={CANCELLED} />
+      <BooleanField source={IS_PUBLISHED} />
       <ConditionalEditButton conditionalField={CANCELLED} />
     </Datagrid>
   </List>
