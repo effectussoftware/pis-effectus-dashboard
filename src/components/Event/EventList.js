@@ -6,6 +6,7 @@ import {
   DateField,
   NumberField,
   BooleanField,
+  EditButton,
 } from 'react-admin';
 
 import {
@@ -19,7 +20,6 @@ import {
   IS_PUBLISHED,
 } from './consts';
 import EventListActions from './EventListActions';
-import ConditionalEditButton from '../common/ConditionalEditButton';
 
 export const EventList = (props) => (
   <List
@@ -37,7 +37,7 @@ export const EventList = (props) => (
       <NumberField source={COST} />
       <BooleanField source={CANCELLED} />
       <BooleanField source={IS_PUBLISHED} />
-      <ConditionalEditButton conditionalField={CANCELLED} />
+      <EditButton />
     </Datagrid>
   </List>
 );
