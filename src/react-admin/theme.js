@@ -12,5 +12,11 @@ export default createMuiTheme({
       dark: '#004299',
       light: '#809aff',
     },
+    error: {
+      light: '#e57373',
+      main: '#f44336',
+      dark: '#d32f2f',
+      contrastText: '#fff',
+    },
   },
 });

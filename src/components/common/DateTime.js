@@ -2,6 +2,7 @@ import * as React from 'react';
 import DatePicker from 'react-datepicker';
 import { Field } from 'react-final-form';
 import 'react-datepicker/dist/react-datepicker.css';
+import './DateTime.css';
 import { TextInput } from 'react-admin';
 
 const DateTimeInput = ({ source, label, timeIntervals, ...props }) => (

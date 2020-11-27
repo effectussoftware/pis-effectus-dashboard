@@ -26,7 +26,7 @@ const GuestsSelector = ({
         options={filteredChoices}
         onBlur={input.onBlur}
         onFocus={input.onFocus}
-        value={input?.value || []}
+        value={(input?.value || []).filter(({ _destroy }) => !_destroy)}
         onChange={(_, values) => input.onChange(values)}
         getOptionLabel={({ name }) => name}
         renderInput={(params) => (
