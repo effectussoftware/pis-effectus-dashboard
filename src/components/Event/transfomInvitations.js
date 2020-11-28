@@ -1,8 +1,12 @@
 import { INVITATIONS } from './consts';
 
-export default ({ [INVITATIONS]: invitations, ...rest }) => ({
+export default ({
+  [INVITATIONS]: invitations,
+  [`${INVITATIONS}_destroy`]: invitations_destroy = [],
+  ...rest
+}) => ({
   [INVITATIONS]:
-    invitations?.map(({ id, _destroy }) =>
+    invitations?.concat(invitations_destroy).map(({ id, _destroy }) =>
       _destroy
         ? {
             id,
