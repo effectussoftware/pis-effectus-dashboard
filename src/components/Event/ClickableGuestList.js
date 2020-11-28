@@ -36,7 +36,7 @@ const DeleteChip = ({
 const ClickableGuestList = ({ disabled, ...props }) => {
   const {
     input: { value = [], onChange },
-  } = useField(INVITATIONS);
+  } = useField(`${INVITATIONS}_destroy`);
 
   const onDelete = (id) => {
     onChange([...value, { id, _destroy: true }]);
