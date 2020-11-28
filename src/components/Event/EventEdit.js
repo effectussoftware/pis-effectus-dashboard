@@ -9,9 +9,6 @@ import {
   useRedirect,
   NumberInput,
   ReferenceArrayInput,
-  ArrayField,
-  SingleFieldList,
-  ChipField,
   BooleanInput,
   useEditController,
 } from 'react-admin';
@@ -31,11 +28,12 @@ import {
 import { NAME as USER_NAME, IS_ACTIVE as USER_IS_ACTIVE } from '../User/consts';
 import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
+import ClickableGuestList from './ClickableGuestList';
 import transformInvitations from './transfomInvitations';
 import NoDeleteToolbar from '../common/NoDeleteToolbar';
 
 export const EventEdit = (props) => {
-  const { record } = useEditController(props);
+  const { record = {} } = useEditController(props);
 
   const notify = useNotify();
   const refresh = useRefresh();
@@ -82,11 +80,7 @@ export const EventEdit = (props) => {
           defaultValue={false}
           disabled={record[CANCELLED]}
         />
-        <ArrayField source={USERS} label="Invitados">
-          <SingleFieldList linkType={false}>
-            <ChipField source={USER_NAME} />
-          </SingleFieldList>
-        </ArrayField>
+        <ClickableGuestList label="Invitados" />
         <ReferenceArrayInput
           label="Agregar invitados"
           source={INVITATIONS}
