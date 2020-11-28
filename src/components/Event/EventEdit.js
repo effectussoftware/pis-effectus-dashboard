@@ -53,26 +53,39 @@ export const EventEdit = (props) => {
       undoable={false}
     >
       <SimpleForm toolbar={<NoDeleteToolbar />}>
-        <TextInput source={NAME} label="Nombre" validate={[required()]} />
+        <TextInput
+          source={NAME}
+          label="Nombre"
+          validate={[required()]}
+          disabled={record[CANCELLED]}
+        />
         <TextInput
           multiline
           label="Descripción"
           source={DESCRIPTION}
           validate={[required()]}
+          disabled={record[CANCELLED]}
         />
-        <TextInput source={ADDRESS} label="Dirección" validate={[required()]} />
+        <TextInput
+          source={ADDRESS}
+          label="Dirección"
+          validate={[required()]}
+          disabled={record[CANCELLED]}
+        />
         <NumberInput source={COST} label="Costo" />
         <DateTimeInput
           precise
           label="Hora de comienzo"
           source={START_TIME}
           timeIntervals={15}
+          disabled={record[CANCELLED]}
         />
         <DateTimeInput
           precise
           label="Hora de finalización"
           source={END_TIME}
           timeIntervals={15}
+          disabled={record[CANCELLED]}
         />
         <BooleanInput
           source={CANCELLED}
@@ -85,15 +98,16 @@ export const EventEdit = (props) => {
           label="Agregar invitados"
           source={INVITATIONS}
           reference={USERS}
+          disabled={record[CANCELLED]}
           filter={{ [USER_IS_ACTIVE]: true }}
         >
-          <GuestsSelector optionText={USER_NAME} />
+          <GuestsSelector disabled={record[CANCELLED]} optionText={USER_NAME} />
         </ReferenceArrayInput>
         <BooleanInput
           source={IS_PUBLISHED}
           label="Publicar"
           defaultValue={false}
-          disabled={record[IS_PUBLISHED]}
+          disabled={record[IS_PUBLISHED] || record[CANCELLED]}
         />
       </SimpleForm>
     </Edit>

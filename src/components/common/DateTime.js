@@ -10,6 +10,7 @@ const DateTimeInput = ({ source, label, timeIntervals, ...props }) => (
     {({ input: { value, ...input } }) => (
       <div>
         <DatePicker
+          disabled={props.disabled}
           showTimeSelect
           timeIntervals={timeIntervals}
           dateFormat="MMMM d, h:mm aa"

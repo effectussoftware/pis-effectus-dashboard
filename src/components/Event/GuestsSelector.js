@@ -12,6 +12,7 @@ const GuestsSelector = ({
   required,
   choices,
   input,
+  disabled,
   meta: { error, touched },
 }) => {
   const { values } = useFormState();
@@ -21,6 +22,7 @@ const GuestsSelector = ({
   return (
     <Box display="flex" alignItems="flex-start">
       <Autocomplete
+        disabled={disabled}
         multiple
         style={{ width: 260 }}
         options={filteredChoices}
@@ -39,15 +41,22 @@ const GuestsSelector = ({
           />
         )}
       />
-      <MarginLeftButton
-        variant="contained"
-        onClick={() => input.onChange(filteredChoices)}
-      >
-        Agregar todos
-      </MarginLeftButton>
-      <MarginLeftButton variant="contained" onClick={() => input.onChange([])}>
-        Quitar todos
-      </MarginLeftButton>
+      {!disabled && (
+        <>
+          <MarginLeftButton
+            variant="contained"
+            onClick={() => input.onChange(filteredChoices)}
+          >
+            Agregar todos
+          </MarginLeftButton>
+          <MarginLeftButton
+            variant="contained"
+            onClick={() => input.onChange([])}
+          >
+            Quitar todos
+          </MarginLeftButton>
+        </>
+      )}
     </Box>
   );
 };
