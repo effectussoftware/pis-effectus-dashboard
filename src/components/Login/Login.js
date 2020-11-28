@@ -23,6 +23,7 @@ const Login = ({ theme }) => {
           clientId={process.env.REACT_APP_CLIENT_ID}
           onSuccess={onSuccess}
           onFailure={console.log}
+          prompt="select_account"
         />
       </div>
       <Notification />
