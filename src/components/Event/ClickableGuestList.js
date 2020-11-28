@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ArrayField, SingleFieldList, ChipField } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
-import { useField, useFormState } from 'react-final-form';
+import { useField } from 'react-final-form';
 import { withStyles } from '@material-ui/core/styles';
 
-import { USERS, INVITATIONS, IS_PUBLISHED } from './consts';
+import { USERS, INVITATIONS } from './consts';
 import { NAME as USER_NAME } from '../User/consts';
 
 const MarginChip = withStyles({
@@ -12,6 +12,7 @@ const MarginChip = withStyles({
 })(Chip);
 
 const DeleteChip = ({
+  disabled,
   onDelete,
   onCancelDelete,
   record: { name, invitation_id },
@@ -20,6 +21,7 @@ const DeleteChip = ({
 
   return (
     <MarginChip
+      disabled={disabled}
       variant={toDelete ? undefined : 'outlined'}
       color={toDelete ? 'secondary' : undefined}
       onDelete={() => {
@@ -31,11 +33,10 @@ const DeleteChip = ({
   );
 };
 
-const ClickableGuestList = ({ ...props }) => {
+const ClickableGuestList = ({ disabled, ...props }) => {
   const {
     input: { value = [], onChange },
   } = useField(INVITATIONS);
-  const { values } = useFormState();
 
   const onDelete = (id) => {
     onChange([...value, { id, _destroy: true }]);
@@ -48,7 +49,7 @@ const ClickableGuestList = ({ ...props }) => {
   return (
     <ArrayField source={USERS} {...props}>
       <SingleFieldList linkType={false}>
-        {values[IS_PUBLISHED] ? (
+        {disabled ? (
           <ChipField source={USER_NAME} />
         ) : (
           <DeleteChip onDelete={onDelete} onCancelDelete={onCancelDelete} />
