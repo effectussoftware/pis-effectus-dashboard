@@ -103,7 +103,10 @@ export const EventEdit = (props) => {
           defaultValue={false}
           disabled={record[CANCELLED]}
         />
-        <ClickableGuestList label="Invitados" />
+        <ClickableGuestList
+          disabled={record[CANCELLED] || record[IS_PUBLISHED]}
+          label="Invitados"
+        />
         <ReferenceArrayInput
           label="Agregar invitados"
           source={INVITATIONS}
