@@ -28,7 +28,8 @@ const CostSummaryForm = () => {
   const [data, setData] = React.useState({
     chartType: 'per year',
     year: currentYear,
-    chart: undefined,
+    chartPesos: undefined,
+    chartDolares: undefined,
   });
   const classes = useStyles();
 
@@ -43,17 +44,38 @@ const CostSummaryForm = () => {
     const {
       json: { cost_summary: dataPoints },
     } = await httpClient(url);
-    const formattedDataPoints = formatDataPoints(dataPoints, data.chartType);
+    const formattedDataPointsPesos = formatDataPoints(
+      dataPoints['pesos'],
+      data.chartType
+    );
+    const formattedDataPointsDolares = formatDataPoints(
+      dataPoints['dolares'],
+      data.chartType
+    );
 
-    const newChart = (
+    const newChartPesos = (
       <CostSummaryChart
-        dataPoints={formattedDataPoints}
+        dataPoints={formattedDataPointsPesos}
         chartType={data.chartType}
         year={data.year}
+        currency="pesos"
       />
     );
 
-    setData({ ...data, chart: newChart });
+    const newChartDolares = (
+      <CostSummaryChart
+        dataPoints={formattedDataPointsDolares}
+        chartType={data.chartType}
+        year={data.year}
+        currency="dolares"
+      />
+    );
+
+    setData({
+      ...data,
+      chartPesos: newChartPesos,
+      chartDolares: newChartDolares,
+    });
   };
 
   return (
@@ -89,7 +111,8 @@ const CostSummaryForm = () => {
           VER COSTOS
         </Button>
       </div>
-      <div>{data.chart}</div>
+      <div>{data.chartPesos}</div>
+      <div>{data.chartDolares}</div>
     </>
   );
 };

@@ -10,6 +10,7 @@ import {
   NumberInput,
   ReferenceArrayInput,
   BooleanInput,
+  SelectInput,
 } from 'react-admin';
 
 import {
@@ -19,6 +20,7 @@ import {
   START_TIME,
   END_TIME,
   COST,
+  CURRENCY,
   INVITATIONS,
   USERS,
   IS_PUBLISHED,
@@ -51,6 +53,14 @@ export const EventCreate = (props) => {
         />
         <TextInput source={ADDRESS} label="Dirección" validate={required()} />
         <NumberInput source={COST} label="Costo" />
+        <SelectInput
+          source={CURRENCY}
+          defaultValue="pesos"
+          choices={[
+            { id: 'pesos', name: 'Pesos' },
+            { id: 'dolares', name: 'Dólares' },
+          ]}
+        />
         <DateTimeInput
           precise
           label="Hora de comienzo"
