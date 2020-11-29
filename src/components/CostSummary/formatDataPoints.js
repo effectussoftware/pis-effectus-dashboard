@@ -1,9 +1,17 @@
-const formatPerYear = (dataPoints, convertRate) =>
-  dataPoints.map((point) => ({
-    label: point.date,
-    y: parseFloat(point.cost) * convertRate,
-    z: parseFloat(point.cost),
-  }));
+const formatPerYear = (dataPoints, convertRate, minYear, maxYear) => {
+  const formattedDataPoints = Array(maxYear - minYear + 1)
+    .fill()
+    .map((_, idx) => ({ label: minYear + idx, y: 0.0, z: 0.0 }));
+  dataPoints.forEach(
+    (point) =>
+      (formattedDataPoints[parseInt(point.date) - minYear] = {
+        label: point.date,
+        y: parseFloat(point.cost) * convertRate,
+        z: parseFloat(point.cost),
+      })
+  );
+  return formattedDataPoints;
+};
 
 const formatPerMonth = (dataPoints, convertRate) => {
   const formattedDataPoints = [
@@ -31,10 +39,16 @@ const formatPerMonth = (dataPoints, convertRate) => {
   return formattedDataPoints;
 };
 
-const formatDataPoints = (dataPoints, chartType, convertRate = 1) => {
+const formatDataPoints = (
+  dataPoints,
+  chartType,
+  minYear,
+  maxYear,
+  convertRate = 1
+) => {
   const formattedDataPoints =
     chartType === 'per year'
-      ? formatPerYear(dataPoints, convertRate)
+      ? formatPerYear(dataPoints, convertRate, minYear, maxYear)
       : formatPerMonth(dataPoints, convertRate);
   return formattedDataPoints;
 };
