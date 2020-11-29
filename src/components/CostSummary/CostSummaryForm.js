@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { fetchUtils } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -28,8 +29,7 @@ const CostSummaryForm = () => {
   const [data, setData] = React.useState({
     chartType: 'per year',
     year: currentYear,
-    chartPesos: undefined,
-    chartDolares: undefined,
+    chart: undefined,
   });
   const classes = useStyles();
 
@@ -44,37 +44,40 @@ const CostSummaryForm = () => {
     const {
       json: { cost_summary: dataPoints },
     } = await httpClient(url);
+
+    const { fetchJson } = fetchUtils;
+    const url_dollar =
+      'https://cotizaciones-brou.herokuapp.com/api/currency/latest';
+    const {
+      json: {
+        rates: {
+          USD: { sell: convertRate },
+        },
+      },
+    } = await fetchJson(url_dollar);
+
     const formattedDataPointsPesos = formatDataPoints(
       dataPoints['pesos'],
       data.chartType
     );
     const formattedDataPointsDolares = formatDataPoints(
       dataPoints['dolares'],
-      data.chartType
+      data.chartType,
+      convertRate
     );
 
-    const newChartPesos = (
+    const newChart = (
       <CostSummaryChart
-        dataPoints={formattedDataPointsPesos}
+        dataPointsPesos={formattedDataPointsPesos}
+        dataPointsDolares={formattedDataPointsDolares}
         chartType={data.chartType}
         year={data.year}
-        currency="pesos"
-      />
-    );
-
-    const newChartDolares = (
-      <CostSummaryChart
-        dataPoints={formattedDataPointsDolares}
-        chartType={data.chartType}
-        year={data.year}
-        currency="dolares"
       />
     );
 
     setData({
       ...data,
-      chartPesos: newChartPesos,
-      chartDolares: newChartDolares,
+      chart: newChart,
     });
   };
 
@@ -111,8 +114,7 @@ const CostSummaryForm = () => {
           VER COSTOS
         </Button>
       </div>
-      <div>{data.chartPesos}</div>
-      <div>{data.chartDolares}</div>
+      <div>{data.chart}</div>
     </>
   );
 };
