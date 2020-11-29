@@ -45,6 +45,16 @@ const CostSummaryForm = () => {
       json: { cost_summary: dataPoints },
     } = await httpClient(url);
 
+    const dateValuesPesos = dataPoints['pesos'].map((point) =>
+      parseInt(point.date)
+    );
+    const dateValuesDolares = dataPoints['dolares'].map((point) =>
+      parseInt(point.date)
+    );
+
+    const minDate = Math.min(...dateValuesPesos, ...dateValuesDolares);
+    const maxDate = Math.max(...dateValuesPesos, ...dateValuesDolares);
+
     const { fetchJson } = fetchUtils;
     const url_dollar =
       'https://cotizaciones-brou.herokuapp.com/api/currency/latest';
@@ -58,11 +68,15 @@ const CostSummaryForm = () => {
 
     const formattedDataPointsPesos = formatDataPoints(
       dataPoints['pesos'],
-      data.chartType
+      data.chartType,
+      minDate,
+      maxDate
     );
     const formattedDataPointsDolares = formatDataPoints(
       dataPoints['dolares'],
       data.chartType,
+      minDate,
+      maxDate,
       convertRate
     );
 
