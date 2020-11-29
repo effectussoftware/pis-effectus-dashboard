@@ -27,11 +27,12 @@ export const EventList = (props) => (
     sort={{ field: UPDATED_EVENT_AT, order: 'DESC' }}
     bulkActionButtons={false}
     actions={<EventListActions />}
+    title="Eventos"
     {...props}
   >
     <Datagrid rowClick="show">
-      <TextField source={NAME} />
-      <TextField source={ADDRESS} />
+      <TextField label="Nombre" source={NAME} />
+      <TextField label="Dirección" source={ADDRESS} />
       <DateField
         source={START_TIME}
         options={{
@@ -42,6 +43,7 @@ export const EventList = (props) => (
           minute: '2-digit',
         }}
         showTime
+        label="Hora de comienzo"
       />
       <DateField
         source={END_TIME}
@@ -53,6 +55,7 @@ export const EventList = (props) => (
           minute: '2-digit',
         }}
         showTime
+        label="Hora de finalización"
       />
       <DateField
         source={UPDATED_EVENT_AT}
@@ -64,11 +67,12 @@ export const EventList = (props) => (
           minute: '2-digit',
         }}
         showTime
+        label="Fecha de edición"
       />
-      <NumberField source={COST} />
-      <TextField source={CURRENCY} />
-      <BooleanField source={CANCELLED} />
-      <BooleanField source={IS_PUBLISHED} />
+      <NumberField label="Costo" source={COST} />
+      <TextField label="Moneda" source={CURRENCY} />
+      <BooleanField label="Cancelado" source={CANCELLED} />
+      <BooleanField label="Publicado" source={IS_PUBLISHED} />
       <EditButton />
     </Datagrid>
   </List>

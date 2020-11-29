@@ -17,15 +17,16 @@ export const ReviewList = (props) => (
     sort={{ field: UPDATED_AT, order: 'DESC' }}
     filters={<ReviewFilter />}
     bulkActionButtons={<BulkDeleteButton undoable={false} />}
+    title="One on One"
     {...props}
   >
     <Datagrid>
-      <ReferenceField source={USER_ID} label="User" reference="users">
+      <ReferenceField source={USER_ID} label="Usuario" reference="users">
         <TextField source={USER_NAME} />
       </ReferenceField>
-      <TextField source={TITLE} />
-      <DateField source={CREATED_AT} />
-      <DateField source={UPDATED_AT} />
+      <TextField label="Título" source={TITLE} />
+      <DateField label="Fecha de creación" source={CREATED_AT} />
+      <DateField label="Fecha de edición" source={UPDATED_AT} />
       <EditButton />
     </Datagrid>
   </List>

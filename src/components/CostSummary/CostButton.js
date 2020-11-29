@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CostButton = () => {
   return (
-    <Button label="Costs" component={Link} to="/costs">
+    <Button label="Costos" component={Link} to="/costs">
       <AttachMoneyIcon />
     </Button>
   );

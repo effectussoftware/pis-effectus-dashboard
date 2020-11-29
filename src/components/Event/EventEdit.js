@@ -34,6 +34,16 @@ import ClickableGuestList from './ClickableGuestList';
 import transformInvitations from './transfomInvitations';
 import NoDeleteToolbar from '../common/NoDeleteToolbar';
 
+const validateInvitations = (value, allValues) => {
+  if (
+    allValues[IS_PUBLISHED] &&
+    !(value?.length > 0 || allValues[USERS]?.length > 0)
+  ) {
+    return 'No se pueden publicar eventos sin invitados';
+  }
+  return [];
+};
+
 export const EventEdit = (props) => {
   const { record = {} } = useEditController(props);
 
@@ -77,6 +87,7 @@ export const EventEdit = (props) => {
         <NumberInput source={COST} label="Costo" />
         <SelectInput
           source={CURRENCY}
+          label="Moneda"
           defaultValue="pesos"
           choices={[
             { id: 'pesos', name: 'Pesos' },
@@ -113,6 +124,7 @@ export const EventEdit = (props) => {
           reference={USERS}
           disabled={record[CANCELLED]}
           filter={{ [USER_IS_ACTIVE]: true }}
+          validate={[validateInvitations]}
         >
           <GuestsSelector disabled={record[CANCELLED]} optionText={USER_NAME} />
         </ReferenceArrayInput>

@@ -17,12 +17,17 @@ export const CommunicationEdit = (props) => (
   <Edit undoable={false} transform={formImageDataToBase64} {...props}>
     <SimpleForm toolbar={<ConfirmDeleteToolbar />}>
       <TextInput disabled source={ID} />
-      <TextInput source={TITLE} validate={[required()]} />
-      <TextInput multiline source={TEXT} validate={[required()]} />
+      <TextInput label="Título" source={TITLE} validate={[required()]} />
+      <TextInput
+        label="Texto"
+        multiline
+        source={TEXT}
+        validate={[required()]}
+      />
       <ImageInput source={IMAGE} label="Cambiar imagen" accept="image/*">
         <MyImageField source="src" />
       </ImageInput>
-      <BooleanInput label="Published" source={IS_PUBLISHED} />
+      <BooleanInput label="Publicado" source={IS_PUBLISHED} />
     </SimpleForm>
   </Edit>
 );
