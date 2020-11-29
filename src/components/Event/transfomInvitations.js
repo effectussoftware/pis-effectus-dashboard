@@ -1,7 +1,7 @@
 import { INVITATIONS } from './consts';
 
 export default ({
-  [INVITATIONS]: invitations,
+  [INVITATIONS]: invitations = [],
   [`${INVITATIONS}_destroy`]: invitations_destroy = [],
   ...rest
 }) => ({

@@ -30,6 +30,13 @@ import DateTimeInput from '../common/DateTime';
 import GuestsSelector from './GuestsSelector';
 import transformInvitations from './transfomInvitations';
 
+const validateInvitations = (value, allValues) => {
+  if (allValues[IS_PUBLISHED] && !(value?.length > 0)) {
+    return 'No se pueden publicar eventos sin invitados';
+  }
+  return [];
+};
+
 export const EventCreate = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
@@ -55,6 +62,7 @@ export const EventCreate = (props) => {
         <NumberInput source={COST} label="Costo" />
         <SelectInput
           source={CURRENCY}
+          label="Moneda"
           defaultValue="pesos"
           choices={[
             { id: 'pesos', name: 'Pesos' },
@@ -79,7 +87,7 @@ export const EventCreate = (props) => {
           label="Invitados"
           source={INVITATIONS}
           reference={USERS}
-          validate={required()}
+          validate={[validateInvitations]}
           filter={{ [USER_IS_ACTIVE]: true }}
         >
           <GuestsSelector />

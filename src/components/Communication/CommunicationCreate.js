@@ -48,22 +48,32 @@ export const CommunicationCreate = (props) => {
       onSuccess={onSuccess}
     >
       <SimpleForm>
-        <TextInput source={TITLE} validate={[required()]} />
-        <TextInput multiline source={TEXT} validate={[required()]} />
+        <TextInput label="Título" source={TITLE} validate={[required()]} />
+        <TextInput
+          label="Texto"
+          multiline
+          source={TEXT}
+          validate={[required()]}
+        />
         <ImageInput source={IMAGE} label="Agregar una imagen" accept="image/*">
           <ImageField source="src" title="title" />
         </ImageInput>
         <BooleanInput
-          label="Published"
+          label="Publicado"
           source={IS_PUBLISHED}
           defaultValue={false}
         />
-        <BooleanInput source={IS_RECURRENT} defaultValue={false} />
+        <BooleanInput
+          label="Es recurrente"
+          source={IS_RECURRENT}
+          defaultValue={false}
+        />
         <ConditionalInput
           inputComponent={<DateTimeInput />}
           conditionField={IS_RECURRENT}
           source={DATE_TIME}
           timeIntervals={60}
+          label="Fecha de recurrencia"
         />
       </SimpleForm>
     </Create>

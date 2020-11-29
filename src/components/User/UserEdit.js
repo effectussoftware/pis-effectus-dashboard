@@ -9,9 +9,9 @@ export const UserEdit = (props) => (
     <SimpleForm toolbar={<NoDeleteToolbar />}>
       <TextInput disabled source={ID} />
       <TextInput disabled source={EMAIL} />
-      <TextInput disabled source={NAME} />
-      <BooleanInput label="Is Active" source={IS_ACTIVE} />
-      <BooleanInput label="Is Admin" source={IS_ADMIN} />
+      <TextInput label="Nombre" disabled source={NAME} />
+      <BooleanInput label="Activo" source={IS_ACTIVE} />
+      <BooleanInput label="Administrador" source={IS_ADMIN} />
     </SimpleForm>
   </Edit>
 );

@@ -21,6 +21,8 @@ import {
   END_TIME,
   COST,
   CANCELLED,
+  CURRENCY,
+  IS_PUBLISHED,
 } from './consts';
 import { DESCRIPTION } from '../Review/consts';
 
@@ -29,13 +31,15 @@ export const EventShow = (props) => (
     <TabbedShowLayout>
       <Tab label="Info">
         <TextField source={ID} />
-        <DateField source={NAME} />
-        <TextField source={DESCRIPTION} />
-        <TextField source={ADDRESS} />
-        <DateField source={START_TIME} />
-        <DateField source={END_TIME} />
-        <NumberField source={COST} />
-        <BooleanField source={CANCELLED} />
+        <DateField label="Nombre" source={NAME} />
+        <TextField label="Descripción" source={DESCRIPTION} />
+        <TextField label="Dirección" source={ADDRESS} />
+        <DateField label="Hora de comienzo" source={START_TIME} />
+        <DateField label="Hora de finalización" source={END_TIME} />
+        <NumberField label="Costo" source={COST} />
+        <TextField label="Moneda" source={CURRENCY} />
+        <BooleanField label="Cancelado" source={CANCELLED} />
+        <BooleanField label="Publicado" source={IS_PUBLISHED} />
       </Tab>
       <Tab label="Invitados">
         <ArrayField source="users">

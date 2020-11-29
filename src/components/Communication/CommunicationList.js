@@ -26,12 +26,13 @@ export const CommunicationList = (props) => (
     sort={{ field: UPDATED_AT, order: 'DESC' }}
     bulkActionButtons={<BulkActionButtons />}
     filters={<CommunicationFilter />}
+    title="Comunicados"
     {...props}
   >
     <Datagrid>
       <TextField source={ID} />
-      <TextField source={TITLE} />
-      <BooleanField source={IS_PUBLISHED} />
+      <TextField label="Título" source={TITLE} />
+      <BooleanField label="Publicado" source={IS_PUBLISHED} />
       <DateField
         source={DATE_TIME}
         options={{
@@ -42,9 +43,10 @@ export const CommunicationList = (props) => (
           minute: '2-digit',
         }}
         showTime
+        label="Fecha de recurrencia"
       />
-      <DateField source={CREATED_AT} />
-      <DateField source={UPDATED_AT} />
+      <DateField label="Fecha de creación" source={CREATED_AT} />
+      <DateField label="Fecha de edición" source={UPDATED_AT} />
       <ConditionalEditButton conditionalField={IS_PUBLISHED} />
     </Datagrid>
   </List>

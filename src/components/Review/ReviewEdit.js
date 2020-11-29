@@ -26,7 +26,7 @@ export const ReviewEdit = (props) => (
       <ReferenceInput
         disabled
         source={USER_ID}
-        label="usuario"
+        label="Usuario"
         reference="users"
       >
         <SelectInput optionText={USER_NAME} />
@@ -34,22 +34,22 @@ export const ReviewEdit = (props) => (
       <ReferenceInput
         disabled
         source={REVIEWER_ID}
-        label="reviewer"
+        label="Reviewer"
         reference="users"
       >
         <SelectInput optionText={USER_NAME} />
       </ReferenceInput>
-      <TextInput disabled source={TITLE} />
-      <TextInput multiline source={TEXT} fullWidth />
+      <TextInput disabled source={TITLE} label="Título" />
+      <TextInput multiline source={TEXT} fullWidth label="Texto" />
       <ActionItemListInput
         isEdit
         source={USER_ACTION_LIST}
-        label="Employee actions"
+        label="Acciones del usuario"
       />
       <ActionItemListInput
         isEdit
         source={REVIEWER_ACTION_LIST}
-        label="Effectus actions"
+        label="Acciones de Effectus"
       />
     </SimpleForm>
   </Edit>
